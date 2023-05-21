@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Lista de productos
+{% endblock %}
+
+{% block body %}
+
+
+	<div>
+		<h1>
+			Lista de productos</h1>
+
+{% include "common/_mensajes.html.twig" %}
+		
+		{% if productos|length>0 %}
+
+			<table class="table">
+				<thead>
+
+					<th>
+						Producto
+					</th>
+					<th>
+						Stock
+					</th>
+					<th>
+						Acciones
+					</th>
+					
+
+				</thead>
+				<tbody >
+
+					{% for p in productos %}
+						<tr>
+
+							<td>
+								{{p.nombre}}
+
+							</td>
+
+                               {% set clase_stock = "stock_normal" %}
+                               {% if p.stock < min_stock %} 
+                               {% set clase_stock = "stock_bajo" %}
+                               {% endif %}
+							<td class="{{clase_stock}}">                            
+                                
+								{{p.stock}}
+
+							</td>
+							<td>
+								<a class="btn btn-primary" href="{{path("app_producto_stock_unidades", {'prodId': p.id})}}">Vender (de uno en uno)</a>
+							</td>
+                       
+						
+
+
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<div class="alert alert-primary d-flex align-items-center" role="alert">
+
+				<div>
+					No se han encontrado productos
+				</div>
+			</div>
+
+		{% endif %}
+	</div>
+{% endblock %}
+
+

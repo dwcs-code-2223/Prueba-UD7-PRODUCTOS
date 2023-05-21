@@ -1,0 +1,14 @@
+{# https://twig.symfony.com/doc/3.x/tags/for.html#iterating-over-keys-and-values
+Itera por keys y values #}
+{% for type, messages  in app.flashes %}
+	{# messages es a su vez un array #}
+	{% for message in messages %}
+		<div class="alert alert-{{ type}} alert-dismissible fade show" role="alert">
+			{{message}}
+		
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		{% endfor %} 
+{% endfor %}
+
+
