@@ -20,7 +20,7 @@ class ProductoController extends AbstractController
             'min_stock' => ProductoService::MIN_STOCK
         ]);
     }
-    #[Route('/producto/stock/{prodId<([1-9]+\d*)>}/{cantidad<\d+>}', name: 'app_producto_stock_unidades')]
+    #[Route('/producto/stock/{prodId<([1-9]+\d*)>}/{cantidad<([1-9]+\d*)>}', name: 'app_producto_stock_unidades')]
     public function vender(ProductoService $productoService, LoggerInterface $logger, int $prodId, int $cantidad=1)
     {
 
